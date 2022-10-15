@@ -2,9 +2,10 @@
 
 #### Notes
 position: 3 properties: x, y, z
-  y axis - going upward
-  z axis - going backward
-  x axix - going to the right
+
+ - y axis - going upward
+ - z axis - going backward
+ - x axix - going to the right
 
 1 unit is usually 1 meter
 
