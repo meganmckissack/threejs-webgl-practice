@@ -1,4 +1,4 @@
-### Three.js and webgl practics
+### Three.js and webgl practice
 
 #### Notes
 position: 3 properties: x, y, z
