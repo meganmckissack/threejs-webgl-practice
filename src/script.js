@@ -1,34 +1,69 @@
+import './style.css';
 import * as THREE from 'three';
-//give us access to all the three.js elements
-const scene = new THREE.Scene();
+import gsap from 'gsap';  ///animation library
 
-//geomertry and mesh
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({color: 0xff0000 });
+// Canvas
+const canvas = document.querySelector('canvas.webgl')
 
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
+// Scene
+const scene = new THREE.Scene()
 
-mesh.position.x = 0.75
-mesh.position.y = - 0.1
-mesh.position.z = 0.3
+// Object
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)
 
+// Sizes
 const sizes = {
-  width: 800,
-  height: 600
+    width: 800,
+    height: 600
 }
 
-//Camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-camera.position.z = 3;
-scene.add(camera);
+// Camera
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+camera.position.z = 3
+scene.add(camera)
 
-//Canvas
-const canvas = document.querySelector('canvas.webgl');
-
-//Renderer
+// Renderer
 const renderer = new THREE.WebGLRenderer({
-  canvas: canvas
+    canvas: canvas
 })
-renderer.setSize(sizes.width, sizes.height);
-renderer.render(scene, camera);
+renderer.setSize(sizes.width, sizes.height)
+
+
+// Animate
+
+// let time = Date.now();
+// const clock = new THREE.Clock();
+
+gsap.to(mesh.position, { duration: 1, delay: 1, x: 2 });
+
+const tick = () => {
+  console.log('tick');
+
+  // Time
+  // const currentTime = Date.now();
+  // const deltaTime = currentTime - time;
+  // time = currentTime;
+// const elapsedTime = clock.getElapsedTime();
+
+
+  // update objects
+  // mesh.rotation.y += 0.01; 
+  // mesh.rotation.y += 0.01 * deltaTime (made things too fast)
+  //mesh.rotation.y = elapsedTime;
+  // mesh.position.x = Math.cos(elapsedTime);
+  // mesh.position.y = Math.sin(elapsedTime);
+  // camera.lookAt(mesh.position);
+
+  // render
+  renderer.render(scene, camera)
+
+  // call tick again on next frame
+  window.requestAnimationFrame(tick);
+}
+
+tick();
+
+// you can use those techniques to animate any Object3D 
